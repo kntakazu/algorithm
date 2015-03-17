@@ -6,7 +6,7 @@ using namespace std;
 class Student {
 public:
     void SetID(int num) { id = num; }
-    void SetName(char *str) {
+    void SetName(const char *str) {
         strcpy(name, str);
     }
     int GetID() {return id; }
@@ -18,11 +18,11 @@ private:
     char name[30];  // 名前
 };
 
-enum Subjects{Math, English, Science};
+enum Subjects{ Math, English, Science};
 
 class Exam {
 public:
-    void SetInfo(int id, char *name, Subjects s, int num);
+    void SetInfo(int id, const char *name, Subjects s, int num);
     int GetPoint() const {return point; }
     void GetResult(char *buf) const;
     
@@ -32,7 +32,7 @@ private:
     int point;
 };
 
-void Exam::SetInfo(int id, char *name, Subjects s, int num)
+void Exam::SetInfo(int id, const char *name, Subjects s, int num)
 {
     student.SetID(id);
     student.SetName(name);
@@ -42,7 +42,7 @@ void Exam::SetInfo(int id, char *name, Subjects s, int num)
 
 void Exam::GetResult(char *buf) const
 {
-    const char *subname[] = { "数学", "英語", "理科" };
+    const char *subname[] = { "数学", "英語", "社会" };
     sprintf(buf, "%s:%d点", subname[subject], point);
 }
 
@@ -66,9 +66,9 @@ double GetAvg(const Exam *Exam, int num)
 int main(int argc, const char * argv[])
 {
     Exam Exam[3];
-    Exam[0].SetInfo(1, "太郎", Math, 60);
-    Exam[1].SetInfo(1, "太郎", English, 80);
-    Exam[2].SetInfo(1, "太郎", Science, 80);
+    Exam[0].SetInfo(1, "太郎", Math, 82);
+    Exam[1].SetInfo(1, "太郎", English, 84);
+    Exam[2].SetInfo(1, "太郎", Science, 83);
     PrintResult(Exam[0]);
     PrintResult(Exam[1]);
     PrintResult(Exam[2]);
